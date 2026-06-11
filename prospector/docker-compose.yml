@@ -1,0 +1,52 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: prospector_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://postgres.xmohktijxgxzykanyzor:C5K4.VfNsX.?jF9@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
+      - DATABASE_URL_SYNC=postgresql://postgres.xmohktijxgxzykanyzor:C5K4.VfNsX.?jF9@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres
+      - REDIS_URL=redis://redis:6379
+      - ALLOWED_ORIGINS=["http://localhost:3000"]
+    depends_on:
+      - redis
+    networks:
+      - prospector_net
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build: ./frontend
+    container_name: prospector_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://backend:8000/api
+    depends_on:
+      - backend
+    networks:
+      - prospector_net
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: prospector_redis
+    ports:
+      - "6379:6379"
+    networks:
+      - prospector_net
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+networks:
+  prospector_net:
+    driver: bridge
+
+volumes:
+  redis_data:

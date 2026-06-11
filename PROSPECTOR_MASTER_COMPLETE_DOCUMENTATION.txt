@@ -1,0 +1,2131 @@
+
+====================================================================
+PROSPECTOR - ASTEROID MINING FEASIBILITY ENGINE
+MASTER COMPLETE PROJECT DOCUMENTATION
+FULL DETAILED VERSION
+====================================================================
+
+This document is a highly detailed formatted consolidation of:
+1. PROSPECTOR Project Plan Part 1
+2. PROSPECTOR Project Plan Part 2
+
+The goal of this version is:
+- Preserve ALL details from the PDFs
+- Improve formatting and readability
+- Keep every task, endpoint, formula, schema and workflow
+- Avoid omission of any information
+- Make it suitable for implementation, documentation and team execution
+
+####################################################################
+####################################################################
+SECTION 1 — CORE PROJECT OVERVIEW
+####################################################################
+####################################################################
+
+PROJECT NAME:
+PROSPECTOR
+
+TAGLINE:
+"Which asteroid should humanity mine first?"
+
+PROJECT CATEGORY:
+- Space Technology
+- Aerospace Intelligence
+- Asteroid Mining Analytics
+- Orbital Economics
+- Scientific Visualization
+- AI + Space Systems
+
+CORE PROBLEM STATEMENT:
+No unified platform currently exists that combines:
+- Orbital mechanics
+- Spectroscopy
+- Economic viability analysis
+- Accessibility calculations
+- Resource estimation
+- Mission feasibility planning
+
+into one centralized asteroid mining intelligence system.
+
+Currently:
+- NASA data is fragmented
+- Orbital data exists separately
+- Composition analysis exists separately
+- Economic analysis is manual
+- Mission planning tools are disconnected
+
+As a result:
+There is no practical intelligence platform capable of answering:
+
+"Which asteroid is the best candidate for economically viable mining?"
+
+CORE SOLUTION:
+A full-stack web intelligence platform that:
+
+1. Ingests LIVE NASA asteroid datasets
+2. Tracks Near-Earth Asteroids (NEAs)
+3. Calculates orbital accessibility
+4. Predicts asteroid mineral composition
+5. Estimates mining value
+6. Computes economic feasibility
+7. Generates mission plans
+8. Visualizes trajectories in 3D
+9. Ranks asteroids using a proprietary EVS scoring system
+
+FINAL OUTPUT:
+A real-time asteroid mining feasibility engine.
+
+####################################################################
+SECTION 2 — CONFIRMED LIVE DATA SOURCES
+####################################################################
+
+ALL APIs ARE:
+- Free
+- Public
+- No API Keys Required
+
+------------------------------------------------------------
+1. SBDB LOOKUP API
+------------------------------------------------------------
+
+Endpoint:
+ssd-api.jpl.nasa.gov/sbdb.api
+
+Purpose:
+Provides detailed information for individual asteroids.
+
+Data Includes:
+- Orbit information
+- Physical parameters
+- Spectral type
+- Diameter
+- Density
+- Albedo
+
+Usage in PROSPECTOR:
+- Core asteroid metadata
+- Physical modeling
+- Spectral analysis
+- Composition estimation
+
+------------------------------------------------------------
+2. SBDB QUERY API
+------------------------------------------------------------
+
+Endpoint:
+ssd-api.jpl.nasa.gov/sbdb_query.api
+
+Purpose:
+Bulk asteroid querying.
+
+Capabilities:
+- Query 780,000+ asteroids
+- Apply filters
+- Perform large-scale retrieval
+
+Usage in PROSPECTOR:
+- Bulk ingestion
+- Asteroid ranking
+- Filtering by orbit class
+- Discovering mining targets
+
+------------------------------------------------------------
+3. NHATS API
+------------------------------------------------------------
+
+Endpoint:
+ssd-api.jpl.nasa.gov/nhats.api
+
+Purpose:
+NASA Human Accessible Targets Study.
+
+Provides:
+- Accessible asteroids
+- Delta-v
+- Launch windows
+- Mission duration
+- Trajectory feasibility
+
+Usage:
+- Accessibility scoring
+- Mission planning
+- Feasibility calculations
+
+------------------------------------------------------------
+4. CLOSE APPROACH API
+------------------------------------------------------------
+
+Endpoint:
+ssd-api.jpl.nasa.gov/cad.api
+
+Purpose:
+Tracks asteroid close approaches.
+
+Provides:
+- Distances
+- Velocities
+- Dates
+- Approach windows
+
+Usage:
+- Mining timing opportunities
+- Earth proximity analysis
+- Risk calculations
+
+####################################################################
+SECTION 3 — COMPLETE TECH STACK
+####################################################################
+
+============================================================
+BACKEND STACK
+============================================================
+
+Language:
+Python 3.11+
+
+Why:
+- Scientific ecosystem
+- Excellent astronomy libraries
+- ML compatibility
+- Numerical computation
+
+------------------------------------------------------------
+Framework:
+FastAPI
+------------------------------------------------------------
+
+Benefits:
+- Async support
+- High performance
+- Automatic OpenAPI docs
+- Swagger generation
+- Excellent typing support
+
+------------------------------------------------------------
+Astrodynamics Libraries
+------------------------------------------------------------
+
+1. poliastro
+Used for:
+- Orbital transfers
+- Trajectory analysis
+- Space mission calculations
+
+2. astropy
+Used for:
+- Astronomical calculations
+- Coordinate systems
+- Time conversions
+- Celestial mechanics
+
+------------------------------------------------------------
+Machine Learning Stack
+------------------------------------------------------------
+
+- scikit-learn
+- pandas
+- numpy
+
+Used for:
+- Mineral prediction
+- Composition estimation
+- Economic modeling
+- Statistical processing
+
+------------------------------------------------------------
+Database
+------------------------------------------------------------
+
+PostgreSQL 15
+
+Used for:
+- Asteroid storage
+- EVS scores
+- Mission plans
+- Trajectory caching
+
+------------------------------------------------------------
+Cache Layer
+------------------------------------------------------------
+
+Redis
+
+Used for:
+- Fast leaderboard retrieval
+- API caching
+- Reduced NASA requests
+
+------------------------------------------------------------
+Task Queue
+------------------------------------------------------------
+
+Celery
+
+Used for:
+- Background syncing
+- Scheduled refreshes
+- Batch computations
+
+============================================================
+FRONTEND STACK
+============================================================
+
+Framework:
+React 18 + Vite
+
+3D Engine:
+Three.js via @react-three/fiber
+
+Charting:
+- Recharts
+- Chart.js
+
+Styling:
+TailwindCSS
+
+State Management:
+- Zustand
+- React Context
+
+HTTP Client:
+Axios
+
+============================================================
+DEVOPS STACK
+============================================================
+
+Containerization:
+Docker + Docker Compose
+
+Backend Hosting:
+- Render
+- Railway
+
+Frontend Hosting:
+Vercel
+
+CI/CD:
+GitHub Actions
+
+API Documentation:
+Swagger/OpenAPI auto-generated by FastAPI
+
+####################################################################
+SECTION 4 — COMPLETE PROJECT FOLDER STRUCTURE
+####################################################################
+
+
+PROSPECTOR - Asteroid Mining Feasibility Engine
+COMPLETE PROJECT PLAN
+
+============================================================
+1. PROJECT OVERVIEW
+============================================================
+
+Name:
+PROSPECTOR
+
+Tagline:
+"Which asteroid should humanity mine first?"
+
+Problem:
+No unified platform exists that combines:
+- orbital mechanics
+- spectroscopy
+- economics
+
+to evaluate asteroid mining feasibility.
+
+Solution:
+A web platform that:
+- ingests live NASA data
+- scores every accessible Near-Earth Asteroid on economic viability
+- visualizes mining missions in 3D
+
+
+============================================================
+2. CONFIRMED LIVE DATA SOURCES
+(All Free, No API Keys)
+============================================================
+
+1. SBDB Lookup
+Endpoint:
+ssd-api.jpl.nasa.gov/sbdb.api
+
+Data Provided:
+- Individual asteroid orbit
+- Physical parameters
+- Spectral type
+- Diameter
+- Density
+- Albedo
+
+
+2. SBDB Query
+Endpoint:
+ssd-api.jpl.nasa.gov/sbdb_query.api
+
+Data Provided:
+- Bulk query of 780,000+ asteroids
+- Filter support
+
+
+3. NHATS
+Endpoint:
+ssd-api.jpl.nasa.gov/nhats.api
+
+Data Provided:
+- 119 accessible asteroids
+- Delta-v
+- Trajectory data
+- Launch windows
+
+
+4. Close Approach
+Endpoint:
+ssd-api.jpl.nasa.gov/cad.api
+
+Data Provided:
+- Close approach events
+- Distances
+- Velocities
+- Dates
+
+
+============================================================
+3. TECH STACK
+============================================================
+
+--------------------
+BACKEND
+--------------------
+
+Language:
+Python 3.11+
+
+Framework:
+FastAPI
+
+Astrodynamics:
+- poliastro
+- astropy
+
+ML:
+- scikit-learn
+- pandas
+- numpy
+
+Database:
+PostgreSQL 15
+
+Cache:
+Redis
+
+Task Queue:
+Celery (for background data refresh)
+
+
+--------------------
+FRONTEND
+--------------------
+
+Framework:
+React 18 + Vite
+
+3D Engine:
+Three.js (via @react-three/fiber)
+
+Charts:
+- Recharts
+- Chart.js
+
+Styling:
+TailwindCSS
+
+State Management:
+- Zustand
+- React Context
+
+HTTP:
+Axios
+
+
+--------------------
+DEVOPS
+--------------------
+
+Containerization:
+Docker + Docker Compose
+
+Backend Deploy:
+- Render
+- Railway
+
+Frontend Deploy:
+Vercel
+
+CI/CD:
+GitHub Actions
+
+Documentation:
+Swagger/OpenAPI (auto from FastAPI)
+
+
+============================================================
+4. FOLDER STRUCTURE
+============================================================
+
+prospector/
+
+|-- backend/
+|   |-- app/
+|   |   |-- __init__.py
+|   |   |-- main.py
+|   |   |-- config.py
+|   |   |-- database.py
+|   |
+|   |   |-- models/
+|   |   |   |-- asteroid.py
+|   |   |   |-- orbital_elements.py
+|   |   |   |-- physical_params.py
+|   |   |   |-- composition.py
+|   |   |   |-- trajectory.py
+|   |   |   |-- evs_score.py
+|   |   |   |-- commodity_price.py
+|   |
+|   |   |-- schemas/
+|   |   |   |-- asteroid_schema.py
+|   |   |   |-- trajectory_schema.py
+|   |   |   |-- evs_schema.py
+|   |   |   |-- composition_schema.py
+|   |
+|   |   |-- routers/
+|   |   |   |-- asteroids.py
+|   |   |   |-- trajectories.py
+|   |   |   |-- evs.py
+|   |   |   |-- compositions.py
+|   |   |   |-- market.py
+|   |   |   |-- mission.py
+|   |
+|   |   |-- services/
+|   |   |   |-- jpl_client.py
+|   |   |   |-- nhats_client.py
+|   |   |   |-- cad_client.py
+|   |   |   |-- delta_v_calc.py
+|   |   |   |-- composition_estimator.py
+|   |   |   |-- evs_engine.py
+|   |   |   |-- market_service.py
+|   |   |   |-- mission_planner.py
+|   |   |   |-- data_sync.py
+|   |
+|   |   |-- utils/
+|   |   |   |-- orbital_math.py
+|   |   |   |-- unit_converter.py
+|   |   |   |-- constants.py
+|   |
+|   |-- tests/
+|   |   |-- test_jpl_client.py
+|   |   |-- test_evs_engine.py
+|   |   |-- test_composition.py
+|   |   |-- test_delta_v.py
+|   |
+|   |-- requirements.txt
+|   |-- Dockerfile
+|   |-- alembic/
+|   |-- alembic.ini
+|
+|-- frontend/
+|   |-- public/
+|   |   |-- textures/
+|   |   |   |-- earth.jpg
+|   |   |   |-- sun.jpg
+|   |   |   |-- mars.jpg
+|   |   |   |-- asteroid_rough.jpg
+|   |   |-- favicon.ico
+|   |
+|   |-- src/
+|   |   |-- main.jsx
+|   |   |-- App.jsx
+|   |   |-- index.css
+|   |
+|   |   |-- components/
+|   |   |   |-- layout/
+|   |   |   |-- dashboard/
+|   |   |   |-- asteroid/
+|   |   |   |-- visualization/
+|   |   |   |-- market/
+|   |   |   |-- ui/
+|   |
+|   |   |-- hooks/
+|   |   |-- services/
+|   |   |-- utils/
+|   |   |-- store/
+|   |
+|   |-- package.json
+|   |-- vite.config.js
+|   |-- tailwind.config.js
+|   |-- Dockerfile
+|
+|-- docker-compose.yml
+|-- README.md
+|-- .env.example
+|-- .gitignore
+
+
+============================================================
+5. DATABASE SCHEMA
+============================================================
+
+--------------------
+TABLE: asteroids
+--------------------
+
+id                      SERIAL PK
+designation             VARCHAR(50) UNIQUE
+full_name               VARCHAR(200)
+spkid                   VARCHAR(20)
+is_neo                  BOOLEAN
+is_pha                  BOOLEAN
+orbit_class             VARCHAR(10)
+last_synced             TIMESTAMP
+
+
+--------------------
+TABLE: orbital_elements
+--------------------
+
+id                      SERIAL PK
+asteroid_id             FK -> asteroids
+epoch                   FLOAT
+eccentricity            FLOAT
+semi_major_axis         FLOAT
+perihelion              FLOAT
+inclination             FLOAT
+long_asc_node           FLOAT
+arg_perihelion          FLOAT
+mean_anomaly            FLOAT
+period                  FLOAT
+moid                    FLOAT
+
+
+--------------------
+TABLE: physical_params
+--------------------
+
+id                      SERIAL PK
+asteroid_id             FK -> asteroids
+abs_magnitude           FLOAT
+diameter_km             FLOAT
+diameter_min_m          FLOAT
+diameter_max_m          FLOAT
+albedo                  FLOAT
+density                 FLOAT
+rotation_period_h       FLOAT
+spectral_type_tholen    VARCHAR(10)
+spectral_type_smass     VARCHAR(10)
+
+
+--------------------
+TABLE: compositions
+--------------------
+
+id                      SERIAL PK
+asteroid_id             FK -> asteroids
+water_pct               FLOAT
+iron_pct                FLOAT
+nickel_pct              FLOAT
+cobalt_pct              FLOAT
+platinum_pct            FLOAT
+gold_pct                FLOAT
+rare_earth_pct          FLOAT
+silicate_pct            FLOAT
+carbon_pct              FLOAT
+confidence              FLOAT
+method                  VARCHAR(50)
+
+
+--------------------
+TABLE: nhats_trajectories
+--------------------
+
+id                      SERIAL PK
+asteroid_id             FK -> asteroids
+min_delta_v             FLOAT
+min_duration_days       FLOAT
+launch_date             DATE
+outbound_days           INT
+stay_days               INT
+return_days             INT
+c3                      FLOAT
+departure_v_inf         FLOAT
+n_viable_trajectories   INT
+occ_code                INT
+
+
+--------------------
+TABLE: evs_scores
+--------------------
+
+id                      SERIAL PK
+asteroid_id             FK -> asteroids
+score                   FLOAT
+accessibility_sub       FLOAT
+value_sub               FLOAT
+feasibility_sub         FLOAT
+estimated_value_usd     FLOAT
+mission_cost_usd        FLOAT
+roi_ratio               FLOAT
+computed_at             TIMESTAMP
+
+
+--------------------
+TABLE: commodity_prices
+--------------------
+
+id                      SERIAL PK
+metal                   VARCHAR(50)
+price_per_kg_usd        FLOAT
+source                  VARCHAR(100)
+fetched_at              TIMESTAMP
+
+
+============================================================
+6. API ENDPOINTS
+============================================================
+
+--------------------
+ASTEROIDS
+--------------------
+
+GET /api/asteroids
+GET /api/asteroids/{designation}
+GET /api/asteroids/{designation}/orbit
+GET /api/asteroids/{designation}/physical
+GET /api/asteroids/search?q=Eros
+POST /api/asteroids/sync
+
+
+--------------------
+COMPOSITIONS
+--------------------
+
+GET /api/compositions/{designation}
+GET /api/compositions/{designation}/value
+POST /api/compositions/predict
+
+
+--------------------
+TRAJECTORIES
+--------------------
+
+GET /api/trajectories/{designation}
+GET /api/trajectories/{designation}/windows
+GET /api/trajectories/accessible
+
+
+--------------------
+EVS
+--------------------
+
+GET /api/evs/leaderboard
+GET /api/evs/{designation}
+POST /api/evs/recalculate
+GET /api/evs/stats
+
+
+--------------------
+MARKET
+--------------------
+
+GET /api/market/prices
+GET /api/market/impact/{designation}
+
+
+--------------------
+MISSION PLANNER
+--------------------
+
+POST /api/mission/plan
+GET /api/mission/{id}
+
+
+============================================================
+7. EVS SCORING ALGORITHM
+============================================================
+
+EVS = (W1 * Accessibility)
+    + (W2 * ResourceValue)
+    + (W3 * Feasibility)
+
+Weights:
+W1 = 0.30
+W2 = 0.45
+W3 = 0.25
+
+
+--------------------
+ACCESSIBILITY
+--------------------
+
+100 * (1 - (delta_v - DV_MIN) / (DV_MAX - DV_MIN))
+
+DV_MIN = 3.5 km/s
+DV_MAX = 12 km/s
+
+
+--------------------
+RESOURCE VALUE
+--------------------
+
+estimated_value =
+SUM(mineral_pct * mass_kg * price_per_kg)
+
+Score:
+100 * log10(estimated_value) / log10(MAX_KNOWN_VALUE)
+
+
+--------------------
+FEASIBILITY
+--------------------
+
+Based on:
+- mission duration
+- orbit uncertainty
+- spin rate
+- asteroid size
+
+Formula:
+25 * duration_score
++ 25 * occ_score
++ 25 * spin_score
++ 25 * size_score
+
+
+============================================================
+8. SPECTRAL TYPE -> MINERAL MAPPING
+============================================================
+
+S-Type:
+Water: 0.1%
+Iron: 25%
+Nickel: 2%
+Platinum: 0.005%
+Gold: 0.0001%
+Silicate: 60%
+Carbon: 2%
+
+C-Type:
+Water: 15%
+Iron: 10%
+Nickel: 1%
+Platinum: 0.002%
+Gold: 0.0001%
+Silicate: 30%
+Carbon: 20%
+
+M-Type:
+Water: 0.05%
+Iron: 85%
+Nickel: 7%
+Platinum: 0.01%
+Gold: 0.001%
+Silicate: 3%
+Carbon: 0.5%
+
+X-Type:
+Water: 1%
+Iron: 40%
+Nickel: 4%
+Platinum: 0.008%
+Gold: 0.0005%
+Silicate: 30%
+Carbon: 5%
+
+
+============================================================
+9. KEY FORMULAS
+============================================================
+
+--------------------
+MASS ESTIMATION
+--------------------
+
+Volume = (4/3) * pi * (diameter/2)^3
+
+Mass = Volume * density
+
+
+--------------------
+DIAMETER ESTIMATION
+--------------------
+
+diameter_km =
+(1329 / sqrt(albedo)) * 10^(-H/5)
+
+
+--------------------
+RESOURCE VALUE
+--------------------
+
+yield_kg =
+mass_kg * mineral_percentage[m]
+
+value_usd =
+yield_kg * price_per_kg[m]
+
+Total value =
+SUM(value_usd for all minerals)
+
+
+============================================================
+10. MISSION COST ESTIMATION
+============================================================
+
+launch_cost =
+delta_v_factor
+* spacecraft_mass
+* cost_per_kg_to_LEO
+
+operations_cost =
+mission_duration_days
+* daily_ops_rate
+
+total_cost =
+launch_cost
++ operations_cost
++ fixed_overhead
+
+
+--------------------
+DEFAULT VALUES
+--------------------
+
+cost_per_kg_to_LEO:
+$2,720
+
+daily_ops_rate:
+$50,000
+
+fixed_overhead:
+$50,000,000
+
+
+
+####################################################################
+SECTION 5 — COMPLETE TEAM ROLE BREAKDOWN
+####################################################################
+
+
+PROSPECTOR - PROJECT PLAN PART 2
+TEAM ROLES, TASK BREAKDOWN & TIMELINE
+
+============================================================
+10. TEAM ROLE ASSIGNMENTS
+============================================================
+
+############################################################
+MEMBER 1: DATA & ASTRODYNAMICS ENGINEER
+############################################################
+
+Owns:
+- backend/app/services/jpl_client.py
+- nhats_client.py
+- cad_client.py
+- delta_v_calc.py
+- mission_planner.py
+- data_sync.py
+- utils/orbital_math.py
+- utils/constants.py
+- utils/unit_converter.py
+- routers/asteroids.py
+- routers/trajectories.py
+- routers/mission.py
+- models/asteroid.py
+- models/orbital_elements.py
+- models/trajectory.py
+
+
+============================================================
+WEEK 1 TASKS
+============================================================
+
+[T1.1] Create services/jpl_client.py
+- Wrapper class for SBDB API
+
+Methods:
+- get_asteroid(designation)
+- search_asteroids(query)
+- query_asteroids(filters)
+
+Requirements:
+- Handle HTTP errors
+- Retries (3 attempts)
+- Timeout (15s)
+- Parse JSON into Python dataclasses
+
+
+[T1.2] Create services/nhats_client.py
+- Wrapper for NHATS API
+
+Methods:
+- get_accessible_asteroids()
+- get_asteroid_trajectories()
+
+Requirements:
+- Parse min_dv
+- Parse min_dur
+- Parse launch windows
+- Parse viable trajectories
+
+
+[T1.3] Create services/cad_client.py
+- Wrapper for Close Approach API
+
+Methods:
+- get_close_approaches()
+
+Requirements:
+- Convert AU to KM
+- Convert AU to Lunar Distance
+
+
+[T1.4] Create utils/constants.py
+
+Constants:
+- AU_TO_KM
+- EARTH_MU
+- SUN_MU
+- G_CONST
+
+
+[T1.5] Create utils/unit_converter.py
+
+Functions:
+- au_to_km()
+- km_to_au()
+- deg_to_rad()
+- jd_to_datetime()
+- au_to_ld()
+
+
+============================================================
+WEEK 2 TASKS
+============================================================
+
+[T1.6] Create SQLAlchemy Models
+- asteroid.py
+- orbital_elements.py
+- trajectory.py
+
+
+[T1.7] Create services/data_sync.py
+
+Functions:
+- sync_nhats_asteroids()
+- sync_asteroid_details()
+- full_sync()
+
+Requirements:
+- Fetch NASA data
+- Store into DB
+- Upsert support
+- Logging
+
+
+[T1.8] Create routers/asteroids.py
+
+Endpoints:
+GET /api/asteroids
+GET /api/asteroids/{designation}
+GET /api/asteroids/search
+POST /api/asteroids/sync
+
+
+============================================================
+WEEK 3 TASKS
+============================================================
+
+[T1.9] Create utils/orbital_math.py
+
+Functions:
+- kepler_to_cartesian()
+- orbital_period()
+- true_anomaly_from_mean()
+- orbit_points()
+
+Requirements:
+- Newton-Raphson solver
+- Keplerian equations
+- Orbit rendering support
+
+
+[T1.10] Create services/delta_v_calc.py
+
+Features:
+- Hohmann transfer approximation
+- Delta-v estimation
+- Vis-viva equation implementation
+
+
+[T1.11] Create routers/trajectories.py
+
+Endpoints:
+GET /api/trajectories/{designation}
+GET /api/trajectories/accessible
+GET /api/trajectories/{designation}/windows
+
+
+============================================================
+WEEK 4 TASKS
+============================================================
+
+[T1.12] Create services/mission_planner.py
+
+Function:
+generate_mission_plan()
+
+Returns:
+- Launch date
+- Arrival date
+- Stay duration
+- Return date
+- Delta-v
+- Fuel mass
+- Mission phases
+
+
+[T1.13] Create routers/mission.py
+
+Endpoints:
+POST /api/mission/plan
+GET /api/mission/{id}
+
+
+============================================================
+WEEK 5-6 TASKS
+============================================================
+
+[T1.14]
+Integrate with EVS Engine
+
+[T1.15]
+Provide orbit_points API for 3D visualization
+
+[T1.16]
+Write unit tests
+
+[T1.17]
+Add Celery scheduled sync
+
+
+============================================================
+WEEK 7-8 TASKS
+============================================================
+
+[T1.18]
+Performance optimization
+
+[T1.19]
+Error handling + logging
+
+[T1.20]
+Final integration testing
+
+
+############################################################
+MEMBER 2: ML & ECONOMICS ENGINEER
+############################################################
+
+Owns:
+- composition_estimator.py
+- evs_engine.py
+- market_service.py
+- routers/compositions.py
+- routers/evs.py
+- routers/market.py
+- models/composition.py
+- models/evs_score.py
+- models/commodity_price.py
+
+
+============================================================
+WEEK 1 TASKS
+============================================================
+
+[T2.1]
+Create SQLAlchemy models
+
+[T2.2]
+Create services/composition_estimator.py
+
+Features:
+- Spectral-type mineral mapping
+- Mineral percentage estimation
+- Mass estimation
+
+Functions:
+- estimate_composition()
+- estimate_mass()
+
+Requirements:
+- Diameter estimation
+- Density estimation
+- Volume calculations
+
+
+[T2.3]
+Research commodity price sources
+
+Options:
+- metals-api.com
+- hardcoded values
+
+Example Prices:
+- Platinum: $31,000/kg
+- Gold: $75,000/kg
+- Iron: $0.10/kg
+- Nickel: $16/kg
+- Cobalt: $29/kg
+- Water: $10,000/kg
+
+
+============================================================
+WEEK 2 TASKS
+============================================================
+
+[T2.4]
+Create services/market_service.py
+
+Functions:
+- get_current_prices()
+- update_prices()
+- get_price_history()
+
+
+[T2.5]
+Create EVS Engine V1
+
+Features:
+- Accessibility score
+- Resource value score
+- Feasibility score
+
+Implements:
+- EVS formula
+
+
+[T2.6]
+Create routers/compositions.py
+
+Endpoints:
+GET /api/compositions/{designation}
+GET /api/compositions/{designation}/value
+
+
+============================================================
+WEEK 3 TASKS
+============================================================
+
+[T2.7]
+Create routers/evs.py
+
+Endpoints:
+GET /api/evs/leaderboard
+GET /api/evs/{designation}
+POST /api/evs/recalculate
+GET /api/evs/stats
+
+
+[T2.8]
+Create routers/market.py
+
+Endpoints:
+GET /api/market/prices
+GET /api/market/impact/{designation}
+
+
+[T2.9]
+Implement market impact simulation
+
+Formula:
+new_supply = current_supply + asteroid_yield
+
+Includes:
+- Elasticity model
+- Supply-demand effects
+
+
+============================================================
+WEEK 4 TASKS
+============================================================
+
+[T2.10]
+Enhance composition estimator with ML
+
+ML Model:
+RandomForest
+
+Features:
+- spectral_type
+- albedo
+- H magnitude
+- density
+
+Target:
+- mineral percentages
+
+
+[T2.11]
+Create confidence scoring
+
+Higher confidence:
+- Known spectral type
+- Measured density
+- Measured diameter
+
+Lower confidence:
+- Estimated diameter
+- Unknown spectral type
+
+
+============================================================
+WEEK 5-6 TASKS
+============================================================
+
+[T2.12]
+Integrate trajectory data
+
+[T2.13]
+Batch EVS computation
+
+[T2.14]
+Mission cost estimation module
+
+[T2.15]
+Write unit tests
+
+[T2.16]
+Provide EVS data docs
+
+
+============================================================
+WEEK 7-8 TASKS
+============================================================
+
+[T2.17]
+Validate EVS scores
+
+[T2.18]
+Write user-facing docs
+
+[T2.19]
+Create What-If endpoint
+
+[T2.20]
+Final testing
+
+
+############################################################
+MEMBER 3: 3D VISUALIZATION ENGINEER
+############################################################
+
+Owns:
+- visualization/*
+- orbitMath.js
+- textures/*
+
+
+============================================================
+WEEK 1 TASKS
+============================================================
+
+[T3.1]
+Setup Three.js with React Three Fiber
+
+Packages:
+- @react-three/fiber
+- @react-three/drei
+- three
+
+
+[T3.2]
+Create SunLight.jsx
+
+Features:
+- Point light
+- Ambient light
+- Bloom effect
+
+
+[T3.3]
+Create Earth and Mars meshes
+
+Requirements:
+- NASA textures
+- Real orbital positions
+
+
+[T3.4]
+Implement CameraControls.jsx
+
+Features:
+- OrbitControls
+- Smooth zoom
+- Damping
+- Zoom limits
+
+
+============================================================
+WEEK 2 TASKS
+============================================================
+
+[T3.5]
+Create orbitMath.js
+
+Functions:
+- keplerToCartesian()
+- solveKepler()
+- generateOrbitPath()
+
+
+[T3.6]
+Create OrbitRenderer.jsx
+
+Features:
+- Elliptical orbit rendering
+- EVS-based color coding
+- Dashed orbit lines
+
+
+[T3.7]
+Create AsteroidMarker.jsx
+
+Features:
+- Dynamic scaling
+- Hover tooltip
+- Click selection
+- Current position calculation
+
+
+============================================================
+WEEK 3 TASKS
+============================================================
+
+[T3.8]
+Create TrajectoryArc.jsx
+
+Features:
+- Earth-to-asteroid transfer arc
+- Animated spacecraft particle
+- Color gradients
+
+
+[T3.9]
+Add bloom post-processing
+
+
+[T3.10]
+Implement asteroid filtering
+
+Features:
+- Top N filtering
+- Spectral filtering
+- Toggle all asteroids
+
+
+============================================================
+WEEK 4 TASKS
+============================================================
+
+[T3.11]
+Add floating info overlay
+
+Shows:
+- Name
+- Spectral type
+- Diameter
+- EVS score
+- Delta-v
+- Estimated value
+
+
+[T3.12]
+Animate planetary and asteroid orbits
+
+Features:
+- Time controls
+- Speed controls
+- Play/pause
+
+
+[T3.13]
+Add star background
+
+
+============================================================
+WEEK 5-6 TASKS
+============================================================
+
+[T3.14]
+Integrate live backend data
+
+[T3.15]
+Performance optimization
+
+Features:
+- InstancedMesh
+- LOD
+- Frustum culling
+
+
+[T3.16]
+Add scale reference indicators
+
+[T3.17]
+Mobile touch controls
+
+
+============================================================
+WEEK 7-8 TASKS
+============================================================
+
+[T3.18]
+Final visual polish
+
+[T3.19]
+Screenshot/export feature
+
+[T3.20]
+Performance testing
+
+
+############################################################
+MEMBER 4: FULL-STACK ARCHITECT
+############################################################
+
+Owns:
+- docker-compose.yml
+- App.jsx
+- index.css
+- layout/*
+- dashboard/*
+- asteroid/*
+- ui/*
+- api.js
+- Zustand store
+- backend infrastructure
+- Dockerfiles
+- DB migrations
+
+
+============================================================
+WEEK 1 TASKS
+============================================================
+
+[T4.1]
+Initialize repository
+
+Tasks:
+- GitHub repo
+- .gitignore
+- README.md
+- .env.example
+- Branch strategy
+
+
+[T4.2]
+Setup backend boilerplate
+
+Includes:
+- FastAPI app
+- CORS
+- Config
+- Database engine
+- Dockerfile
+
+
+[T4.3]
+Setup frontend boilerplate
+
+Packages:
+- tailwindcss
+- axios
+- react-router-dom
+- zustand
+- recharts
+
+
+[T4.4]
+Create docker-compose.yml
+
+Services:
+- backend
+- frontend
+- postgres
+- redis
+
+
+============================================================
+WEEK 2 TASKS
+============================================================
+
+[T4.5]
+Create design system
+
+Theme:
+- Deep space blacks
+- Electric blue
+- Nebula purple
+- Solar gold
+
+Features:
+- Glassmorphism
+- Inter font
+- Animations
+
+
+[T4.6]
+Create GlassCard.jsx
+
+[T4.7]
+Create ScoreGauge.jsx
+
+[T4.8]
+Create LoadingSpinner.jsx
+
+[T4.9]
+Create Navbar.jsx
+
+[T4.10]
+Create Sidebar.jsx
+
+
+============================================================
+WEEK 3 TASKS
+============================================================
+
+[T4.11]
+Create services/api.js
+
+[T4.12]
+Create Zustand store
+
+[T4.13]
+Create DashboardPage.jsx
+
+[T4.14]
+Create StatsCards.jsx
+
+[T4.15]
+Create TopTargetsTable.jsx
+
+
+============================================================
+WEEK 4 TASKS
+============================================================
+
+[T4.16]
+Create EVSDistributionChart.jsx
+
+[T4.17]
+Create AsteroidDetailPage.jsx
+
+[T4.18]
+Create PhysicalParamsCard.jsx
+
+[T4.19]
+Create CompositionBreakdown.jsx
+
+[T4.20]
+Create EVSScoreGauge.jsx
+
+
+============================================================
+WEEK 5-6 TASKS
+============================================================
+
+[T4.21]
+Create TrajectoryPanel.jsx
+
+[T4.22]
+Create MissionTimeline.jsx
+
+[T4.23]
+Create MarketPage.jsx
+
+[T4.24]
+Setup Alembic migrations
+
+[T4.25]
+Wire frontend to backend APIs
+
+[T4.26]
+Implement Redis caching
+
+
+============================================================
+WEEK 7-8 TASKS
+============================================================
+
+[T4.27]
+End-to-end testing
+
+[T4.28]
+Responsive design pass
+
+[T4.29]
+Deployment
+
+[T4.30]
+Final README
+
+
+============================================================
+11. INTEGRATION DEPENDENCIES
+============================================================
+
+M1 PROVIDES:
+- Orbital elements
+- Delta-v
+- Orbit points
+- Asteroid endpoints
+
+TO:
+- M2
+- M3
+- M4
+
+
+M2 PROVIDES:
+- EVS scores
+- Composition data
+
+TO:
+- M3
+- M4
+
+
+M3 PROVIDES:
+- SolarSystem3D component
+
+TO:
+- M4
+
+
+M4 PROVIDES:
+- Database
+- Docker environment
+- React app shell
+- Shared UI
+
+TO:
+- M1
+- M2
+- M3
+
+
+============================================================
+CRITICAL INTEGRATION MILESTONES
+============================================================
+
+END OF WEEK 2:
+- Docker Compose working
+- JPL wrappers complete
+- Full stack runnable locally
+
+END OF WEEK 4:
+- Real asteroid endpoints working
+- EVS endpoints working
+- Dashboard rendering real data
+
+END OF WEEK 6:
+- End-to-end integration complete
+
+END OF WEEK 8:
+- Deployment + documentation complete
+
+
+============================================================
+12. WEEK-BY-WEEK TIMELINE SUMMARY
+============================================================
+
+WEEK 1:
+- API Wrappers
+- DB Models
+- Three.js Setup
+- Repo Setup
+
+WEEK 2:
+- Data Sync
+- EVS Engine V1
+- Orbit Rendering
+- UI System
+
+WEEK 3:
+- Orbital Math
+- Market Simulation
+- Trajectory Visualization
+- Dashboard
+
+WEEK 4:
+- Mission Planner
+- ML Composition
+- Orbit Animation
+- Detail Pages
+
+WEEK 5:
+- Integrations
+- Batch EVS
+- Backend APIs
+- Mission Timeline
+
+WEEK 6:
+- Testing
+- Performance
+- Redis Caching
+
+WEEK 7:
+- Validation
+- Mobile Optimization
+- E2E Testing
+
+WEEK 8:
+- Deployment
+- Documentation
+- Final Integration
+
+
+============================================================
+13. DEPLOYMENT CHECKLIST
+============================================================
+
+[ ] PostgreSQL provisioned
+[ ] Redis provisioned
+[ ] Backend deployed
+[ ] Initial data sync complete
+[ ] Frontend deployed
+[ ] CORS configured
+[ ] Celery worker running
+[ ] SSL enabled
+[ ] README completed
+[ ] Demo video recorded
+
+
+============================================================
+14. RISKS & MITIGATIONS
+============================================================
+
+RISK:
+NASA API rate limiting
+
+IMPACT:
+Data sync failure
+
+MITIGATION:
+Cache aggressively in DB
+Sync once per day
+
+
+RISK:
+Three.js performance issues
+
+IMPACT:
+Laggy 3D rendering
+
+MITIGATION:
+Use InstancedMesh
+Use LOD
+Limit visible asteroids
+
+
+RISK:
+Inaccurate composition estimates
+
+IMPACT:
+Misleading EVS scores
+
+MITIGATION:
+Show confidence levels
+Document methodology
+Allow manual override
+
+
+RISK:
+Commodity price API limitations
+
+IMPACT:
+Stale pricing
+
+MITIGATION:
+Fallback hardcoded prices
+Manual monthly updates
+
+
+RISK:
+Team member availability
+
+IMPACT:
+Project delays
+
+MITIGATION:
+Clear ownership
+Weekly syncs
+Shared UI responsibilities
+
+
+
+####################################################################
+SECTION 6 — DETAILED EVS SCORING SYSTEM
+####################################################################
+
+EVS = Economic Viability Score
+
+Purpose:
+Ranks asteroids based on:
+- Accessibility
+- Resource value
+- Mission feasibility
+
+------------------------------------------------------------
+MASTER FORMULA
+------------------------------------------------------------
+
+EVS =
+(W1 × Accessibility)
++
+(W2 × ResourceValue)
++
+(W3 × Feasibility)
+
+WEIGHTS:
+W1 = 0.30
+W2 = 0.45
+W3 = 0.25
+
+Resource value is intentionally weighted highest because:
+economic profitability is the primary objective.
+
+------------------------------------------------------------
+ACCESSIBILITY SCORE
+------------------------------------------------------------
+
+Formula:
+
+100 * (1 - (delta_v - DV_MIN) / (DV_MAX - DV_MIN))
+
+Constants:
+DV_MIN = 3.5 km/s
+DV_MAX = 12 km/s
+
+Interpretation:
+Lower delta-v means:
+- Less fuel
+- Lower mission cost
+- Easier accessibility
+
+------------------------------------------------------------
+RESOURCE VALUE SCORE
+------------------------------------------------------------
+
+estimated_value =
+SUM(mineral_pct × mass_kg × price_per_kg)
+
+Normalized Score:
+100 * log10(estimated_value) / log10(MAX_KNOWN_VALUE)
+
+Purpose:
+Avoids massive score imbalance caused by extremely valuable asteroids.
+
+------------------------------------------------------------
+FEASIBILITY SCORE
+------------------------------------------------------------
+
+Factors:
+- Mission duration
+- Orbit uncertainty
+- Spin rate
+- Asteroid size
+
+Formula:
+25 * duration_score
++ 25 * occ_score
++ 25 * spin_score
++ 25 * size_score
+
+####################################################################
+SECTION 7 — SPECTRAL TYPE TO MINERAL MAPPING
+####################################################################
+
+S-TYPE (Siliceous)
+- Water: 0.1%
+- Iron: 25%
+- Nickel: 2%
+- Platinum: 0.005%
+- Gold: 0.0001%
+- Silicate: 60%
+- Carbon: 2%
+
+C-TYPE (Carbonaceous)
+- Water: 15%
+- Iron: 10%
+- Nickel: 1%
+- Platinum: 0.002%
+- Gold: 0.0001%
+- Silicate: 30%
+- Carbon: 20%
+
+M-TYPE (Metallic)
+- Water: 0.05%
+- Iron: 85%
+- Nickel: 7%
+- Platinum: 0.01%
+- Gold: 0.001%
+- Silicate: 3%
+- Carbon: 0.5%
+
+X-TYPE
+- Water: 1%
+- Iron: 40%
+- Nickel: 4%
+- Platinum: 0.008%
+- Gold: 0.0005%
+- Silicate: 30%
+- Carbon: 5%
+
+V-TYPE (Vestoid)
+- Water: 0.1%
+- Iron: 20%
+- Nickel: 1.5%
+- Platinum: 0.003%
+- Gold: 0.0001%
+- Silicate: 65%
+- Carbon: 1%
+
+B-TYPE
+- Water: 12%
+- Iron: 8%
+- Nickel: 0.8%
+- Platinum: 0.001%
+- Gold: 0.0001%
+- Silicate: 35%
+- Carbon: 22%
+
+D-TYPE
+- Water: 8%
+- Iron: 5%
+- Nickel: 0.5%
+- Platinum: 0.001%
+- Gold: 0.00005%
+- Silicate: 25%
+- Carbon: 30%
+
+####################################################################
+SECTION 8 — KEY SCIENTIFIC FORMULAS
+####################################################################
+
+------------------------------------------------------------
+MASS ESTIMATION FROM DIAMETER
+------------------------------------------------------------
+
+If density unknown:
+Default densities:
+- S-type: 2.7 g/cm^3
+- C-type: 1.3 g/cm^3
+- M-type: 5.3 g/cm^3
+
+Volume Formula:
+V = (4/3) × pi × (diameter/2)^3
+
+Mass Formula:
+Mass = Volume × Density
+
+------------------------------------------------------------
+DIAMETER ESTIMATION FROM H MAGNITUDE
+------------------------------------------------------------
+
+diameter_km =
+(1329 / sqrt(albedo)) × 10^(-H/5)
+
+Default Albedo:
+- S-type: 0.20
+- C-type: 0.06
+- M-type: 0.10
+
+------------------------------------------------------------
+RESOURCE VALUE ESTIMATION
+------------------------------------------------------------
+
+yield_kg =
+mass_kg × mineral_percentage[m]
+
+value_usd =
+yield_kg × price_per_kg[m]
+
+Total Value:
+SUM(value_usd for all minerals)
+
+------------------------------------------------------------
+MISSION COST ESTIMATION
+------------------------------------------------------------
+
+launch_cost =
+delta_v_factor
+× spacecraft_mass
+× cost_per_kg_to_LEO
+
+operations_cost =
+mission_duration_days
+× daily_ops_rate
+
+total_cost =
+launch_cost
++ operations_cost
++ fixed_overhead
+
+DEFAULT CONSTANTS:
+- cost_per_kg_to_LEO = $2,720
+- daily_ops_rate = $50,000
+- fixed_overhead = $50,000,000
+
+####################################################################
+SECTION 9 — FINAL PROJECT GOALS
+####################################################################
+
+The system should ultimately provide:
+
+1. Real-time asteroid rankings
+2. Mission feasibility analysis
+3. Economic viability calculations
+4. Space mining intelligence
+5. Interactive 3D orbit visualization
+6. Future mining candidate prediction
+7. Research-grade asteroid analytics
+
+####################################################################
+SECTION 10 — FINAL PROJECT OUTCOME
+####################################################################
+
+PROSPECTOR is intended to function as:
+
+- A space intelligence platform
+- An asteroid economics simulator
+- A scientific visualization engine
+- A mission planning tool
+- A research and educational platform
+- A futuristic aerospace analytics product
+
+The project combines:
+- Aerospace engineering
+- Scientific computing
+- AI/ML
+- Full-stack development
+- Data engineering
+- Astrodynamics
+- Economic modeling
+- Interactive visualization
+
+into one unified system.
+
+====================================================================
+END OF MASTER DOCUMENT
+====================================================================
