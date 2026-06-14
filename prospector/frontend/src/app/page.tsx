@@ -1,121 +1,115 @@
 import Link from "next/link";
-import { ArrowRight, Rocket, Star, Zap } from "lucide-react";
+import { ArrowRight, Rocket, Star, Zap, Database, Globe, Calculator, BarChart3, Activity } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-space-gradient relative overflow-hidden">
-      {/* Star field background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {Array.from({ length: 80 }).map((_, i) => (
-          <div
-            key={i}
-            className="star"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 4}s`,
-              width: Math.random() > 0.8 ? "3px" : "2px",
-              height: Math.random() > 0.8 ? "3px" : "2px",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Nebula glow effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-nebula-600/20 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-electric-500/15 rounded-full blur-3xl pointer-events-none" />
+    <div className="min-h-screen bg-space-950 relative overflow-hidden font-sans text-secondary-400">
+      {/* Structural Grid Background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20" style={{
+        backgroundImage: `linear-gradient(rgba(148, 163, 184, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(148, 163, 184, 0.1) 1px, transparent 1px)`,
+        backgroundSize: '40px 40px'
+      }} />
 
       {/* Hero */}
       <section className="relative z-10 flex flex-col items-center justify-center min-h-[85vh] px-6 text-center">
         {/* Badge */}
-        <div className="badge-nebula mb-6 animate-fade-in">
-          <Star className="w-3 h-3 mr-1.5" />
-          Powered by live NASA JPL data
+        <div className="badge-electric mb-6 animate-fade-in border-primary-500">
+          <Activity className="w-3 h-3 mr-2" />
+          SYSTEM ONLINE: NASA JPL DATA SYNC ACTIVE
         </div>
 
         {/* Title */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight animate-slide-up">
-          <span className="gradient-text">PROSPECTOR</span>
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 tracking-tighter text-white animate-slide-up">
+          PROSPECTOR
         </h1>
 
-        <p className="text-xl md:text-2xl text-asteroid-400 font-medium mb-4 animate-fade-in">
-          Which asteroid should humanity mine first?
+        <p className="text-xl md:text-2xl text-secondary-400 font-mono mb-4 animate-fade-in uppercase tracking-widest">
+          Asteroid Mining Feasibility Engine
         </p>
 
-        <p className="text-base md:text-lg text-asteroid-400/70 max-w-2xl mb-12 leading-relaxed animate-fade-in">
-          A real-time asteroid mining feasibility engine that combines orbital mechanics,
-          spectroscopy, and economic modeling to rank every Near-Earth Asteroid by mining viability.
+        <p className="text-sm md:text-base text-secondary-500 max-w-2xl mb-12 leading-relaxed animate-fade-in font-mono">
+          AGGREGATING ORBITAL MECHANICS, SPECTROSCOPY, AND ECONOMIC MODELING TO RANK NEAR-EARTH ASTEROIDS BY MINING VIABILITY.
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 animate-slide-up">
-          <Link href="/dashboard" className="btn-primary flex items-center gap-2 text-base">
-            <Rocket className="w-5 h-5" />
-            Launch Dashboard
-            <ArrowRight className="w-4 h-4" />
+        <div className="flex flex-col sm:flex-row gap-6 animate-slide-up">
+          <Link href="/dashboard" className="btn-primary flex items-center gap-2 text-sm">
+            <Rocket className="w-4 h-4" />
+            INITIALIZE DASHBOARD
+            <ArrowRight className="w-4 h-4 ml-2" />
           </Link>
-          <Link href="/leaderboard" className="btn-secondary flex items-center gap-2 text-base">
-            <Star className="w-5 h-5" />
-            View Leaderboard
+          <Link href="/leaderboard" className="btn-secondary flex items-center gap-2 text-sm">
+            <BarChart3 className="w-4 h-4" />
+            VIEW EVS RANKINGS
           </Link>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-6 mt-20 max-w-2xl w-full animate-fade-in">
+        <div className="grid grid-cols-3 gap-1 mt-20 max-w-3xl w-full animate-fade-in border border-slate-700 bg-slate-800 p-[1px]">
           {[
-            { label: "Asteroids Tracked", value: "119+", icon: "☄️" },
-            { label: "Live NASA APIs", value: "4", icon: "🛰️" },
-            { label: "EVS Algorithm", value: "v1.0", icon: "🧮" },
+            { label: "TARGETS ANALYZED", value: "780K+", icon: <Database className="w-5 h-5" /> },
+            { label: "API ENDPOINTS", value: "3", icon: <Globe className="w-5 h-5" /> },
+            { label: "EVS ALGORITHM", value: "v1.0", icon: <Calculator className="w-5 h-5" /> },
           ].map((stat) => (
-            <div key={stat.label} className="glass-card p-4 text-center">
-              <div className="text-2xl mb-1">{stat.icon}</div>
-              <div className="text-2xl font-bold gradient-text-nebula">{stat.value}</div>
-              <div className="text-xs text-asteroid-400 mt-1">{stat.label}</div>
+            <div key={stat.label} className="bg-space-950 p-6 flex flex-col items-center text-center">
+              <div className="text-secondary-500 mb-3">{stat.icon}</div>
+              <div className="text-2xl font-mono text-primary-400 mb-2">{stat.value}</div>
+              <div className="text-[10px] text-secondary-500 font-mono uppercase tracking-widest">{stat.label}</div>
             </div>
           ))}
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="relative z-10 px-6 py-24 max-w-6xl mx-auto">
-        <h2 className="section-header text-center gradient-text mb-4">
-          Intelligence Engine
-        </h2>
-        <p className="section-subtext text-center mb-16">
-          Six layers of analysis to find humanity's best asteroid mining target
-        </p>
+      <section className="relative z-10 px-6 py-24 border-t border-slate-800 bg-space-900">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-16 flex flex-col items-start border-l-4 border-primary-500 pl-6">
+            <h2 className="text-2xl font-bold text-white tracking-tight uppercase mb-2">
+              Intelligence Engine Architecture
+            </h2>
+            <p className="text-secondary-400 text-sm font-mono uppercase">
+              Six layers of analysis to identify optimal asteroid mining targets.
+            </p>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((f) => (
-            <div key={f.title} className="glass-card-hover p-6">
-              <div className="text-3xl mb-3">{f.icon}</div>
-              <h3 className="text-lg font-semibold mb-2 text-white">{f.title}</h3>
-              <p className="text-asteroid-400 text-sm leading-relaxed">{f.desc}</p>
-            </div>
-          ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1px] bg-slate-700 border border-slate-700">
+            {features.map((f) => (
+              <div key={f.title} className="bg-space-950 p-8 hover:bg-slate-800/50 transition-colors">
+                <div className="text-primary-500 mb-6">{f.icon}</div>
+                <h3 className="text-sm font-bold mb-3 text-white uppercase tracking-wider">{f.title}</h3>
+                <p className="text-secondary-500 text-xs font-mono leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* EVS Formula Section */}
-      <section className="relative z-10 px-6 py-16 max-w-4xl mx-auto">
-        <div className="glass-card p-8 text-center">
-          <div className="badge-solar mb-4 mx-auto w-fit">
-            <Zap className="w-3 h-3 mr-1.5" />
-            Proprietary Algorithm
+      <section className="relative z-10 px-6 py-24 bg-space-950 border-t border-slate-800">
+        <div className="max-w-4xl mx-auto">
+          <div className="glass-card p-1 border border-slate-700">
+            <div className="bg-space-900 p-8 flex flex-col items-center text-center">
+              <div className="badge-solar mb-6">
+                <Zap className="w-3 h-3 mr-2" />
+                PROPRIETARY ALGORITHM
+              </div>
+              <h2 className="text-xl font-bold mb-6 text-white uppercase tracking-wider">Economic Viability Score (EVS)</h2>
+              <div className="w-full bg-space-950 border border-slate-700 p-6 mb-8 font-mono text-sm">
+                <span className="text-white">EVS</span> = 
+                <span className="text-primary-400"> (0.30 × Accessibility)</span> + 
+                <span className="text-secondary-400"> (0.45 × ResourceValue)</span> + 
+                <span className="text-slate-400"> (0.25 × Feasibility)</span>
+              </div>
+              <p className="text-secondary-500 text-xs font-mono max-w-2xl mx-auto leading-relaxed uppercase mb-8">
+                Resource value is weighted highest as economic profitability is the primary objective.
+                Delta-v determines accessibility, mineral composition determines value, and mission parameters determine feasibility.
+              </p>
+              <Link href="/dashboard" className="btn-primary inline-flex items-center gap-2 text-sm uppercase tracking-wider">
+                EXECUTE EVS CALCULATION
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </Link>
+            </div>
           </div>
-          <h2 className="text-2xl font-bold mb-4">Economic Viability Score (EVS)</h2>
-          <div className="font-mono text-electric-400 text-lg mb-6 p-4 bg-space-800 rounded-xl">
-            EVS = (0.30 × Accessibility) + (0.45 × ResourceValue) + (0.25 × Feasibility)
-          </div>
-          <p className="text-asteroid-400 text-sm max-w-xl mx-auto">
-            Resource value is weighted highest because economic profitability is the primary objective.
-            Delta-v determines accessibility, mineral composition determines value, and mission parameters determine feasibility.
-          </p>
-          <Link href="/leaderboard" className="btn-primary inline-flex items-center gap-2 mt-6">
-            See Top Ranked Asteroids
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
       </section>
     </div>
@@ -124,33 +118,33 @@ export default function HomePage() {
 
 const features = [
   {
-    icon: "🛸",
-    title: "Live NASA Data",
-    desc: "Ingests real-time data from JPL SBDB, NHATS, and Close Approach APIs. No API keys needed.",
+    icon: <Database className="w-6 h-6" />,
+    title: "Live NASA Data Sync",
+    desc: "Ingests real-time telemetry from JPL SBDB, NHATS, and Close Approach APIs via secure data pipelines.",
   },
   {
-    icon: "📐",
+    icon: <Globe className="w-6 h-6" />,
     title: "Orbital Mechanics",
-    desc: "Full Keplerian orbit calculations with Newton-Raphson Kepler solving and Hohmann transfer estimates.",
+    desc: "Rigorous Keplerian orbit computations utilizing Newton-Raphson solvers and Hohmann transfer delta-v estimations.",
   },
   {
-    icon: "🔬",
+    icon: <Activity className="w-6 h-6" />,
     title: "Spectral Analysis",
-    desc: "Maps spectral types (S, C, M, X, V, B, D) to mineral composition with confidence scoring.",
+    desc: "Translates taxonomic classifications (S, C, M, X, V, B, D) into probable mineral compositions and mass fractions.",
   },
   {
-    icon: "💰",
+    icon: <BarChart3 className="w-6 h-6" />,
     title: "Economic Modeling",
-    desc: "Estimates total mineral value using commodity prices. Simulates market impact of asteroid mining.",
+    desc: "Calculates gross estimated value utilizing current commodity pricing for Iron, Nickel, Cobalt, Platinum, and Water.",
   },
   {
-    icon: "🚀",
-    title: "Mission Planning",
-    desc: "Generates complete mission plans with launch windows, fuel requirements, and cost breakdowns.",
+    icon: <Rocket className="w-6 h-6" />,
+    title: "Mission Logistics",
+    desc: "Evaluates mission feasibility by identifying accessible launch windows, required fuel mass, and total mission durations.",
   },
   {
-    icon: "🌐",
-    title: "3D Visualization",
-    desc: "Interactive solar system visualization with real orbital data, rendered with Three.js.",
+    icon: <Star className="w-6 h-6" />,
+    title: "3D Telemetry Viewer",
+    desc: "Interactive spatial visualization of orbital trajectories mapped against Earth's orbit for proximity assessment.",
   },
 ];

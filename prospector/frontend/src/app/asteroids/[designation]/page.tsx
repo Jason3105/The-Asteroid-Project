@@ -8,13 +8,14 @@ export const metadata = {
 };
 
 interface Props {
-  params: { designation: string };
+  params: Promise<{ designation: string }>;
 }
 
-export default function AsteroidPage({ params }: Props) {
-  if (!params.designation) return notFound();
+export default async function AsteroidPage({ params }: Props) {
+  const resolvedParams = await params;
+  if (!resolvedParams.designation) return notFound();
 
-  const designation = decodeURIComponent(params.designation);
+  const designation = decodeURIComponent(resolvedParams.designation);
 
   return (
     <div className="min-h-screen px-4 md:px-8 py-8 max-w-7xl mx-auto">

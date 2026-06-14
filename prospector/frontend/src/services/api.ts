@@ -4,7 +4,7 @@
  */
 import axios from "axios";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+const API_BASE = "/api";
 
 export const api = axios.create({
   baseURL: API_BASE,
@@ -132,6 +132,12 @@ export interface OrbitPoint {
 // Asteroids
 export const getAsteroids = (params?: { skip?: number; limit?: number; is_neo?: boolean }) =>
   api.get<{ total: number; asteroids: Asteroid[] }>("/asteroids", { params });
+
+export const queryAsteroids = (params?: Record<string, any>) =>
+  api.get("/asteroids/query", { params });
+
+export const getCloseApproaches = (designation: string, params?: Record<string, any>) =>
+  api.get(`/asteroids/${encodeURIComponent(designation)}/close-approaches`, { params });
 
 export const getAsteroid = (designation: string) =>
   api.get<Asteroid>(`/asteroids/${encodeURIComponent(designation)}`);

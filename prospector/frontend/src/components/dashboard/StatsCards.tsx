@@ -15,9 +15,9 @@ export function StatsCards() {
     return (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {Array.from({ length: 4 }).map((_, i) => (
-          <div key={i} className="glass-card p-6 animate-pulse">
-            <div className="h-8 bg-white/10 rounded mb-2" />
-            <div className="h-4 bg-white/10 rounded w-2/3" />
+          <div key={i} className="bg-space-900 border border-slate-700 p-6 animate-pulse">
+            <div className="h-6 bg-slate-800 rounded mb-2 w-8" />
+            <div className="h-4 bg-slate-800 rounded w-2/3" />
           </div>
         ))}
       </div>
@@ -26,52 +26,55 @@ export function StatsCards() {
 
   if (error || !data) {
     return (
-      <div className="glass-card p-6 text-asteroid-400 text-center">
-        Failed to load stats. Start the backend and trigger a sync.
+      <div className="bg-space-900 border border-slate-700 p-6 text-secondary-500 font-mono text-xs text-center uppercase">
+        Failed to load telemetry. Establish backend uplink.
       </div>
     );
   }
 
   const stats = [
     {
-      label: "Asteroids Scored",
+      label: "Targets Analyzed",
       value: data.total_scored.toLocaleString(),
       icon: Target,
-      color: "text-electric-400",
-      glow: "shadow-glow-electric",
+      color: "text-primary-400",
     },
     {
-      label: "Avg EVS Score",
+      label: "Mean EVS",
       value: data.avg_score.toFixed(1),
       icon: TrendingUp,
-      color: "text-nebula-400",
-      glow: "shadow-glow-nebula",
+      color: "text-secondary-400",
     },
     {
-      label: "Top EVS Score",
+      label: "Peak EVS",
       value: data.max_score.toFixed(1),
       icon: Award,
-      color: "text-solar-400",
-      glow: "shadow-glow-solar",
+      color: "text-secondary-400",
     },
     {
       label: "Total Est. Value",
       value: formatUSD(data.total_estimated_value_usd),
       icon: DollarSign,
-      color: "text-green-400",
-      glow: "shadow-glow-green",
+      color: "text-primary-400",
     },
   ];
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {stats.map(({ label, value, icon: Icon, color, glow }) => (
-        <div key={label} className="glass-card p-6">
-          <div className={`${color} mb-3`}>
-            <Icon className="w-6 h-6" />
+      {stats.map(({ label, value, icon: Icon, color }) => (
+        <div key={label} className="bg-space-900 border border-slate-700 p-6 flex flex-col justify-between hover:bg-slate-800/50 transition-colors">
+          <div className="flex justify-between items-start mb-4">
+            <div className={`${color}`}>
+              <Icon className="w-5 h-5" />
+            </div>
+            <div className="text-[10px] text-secondary-500 font-mono uppercase tracking-widest border border-slate-700 px-1.5 py-0.5 bg-space-950">
+              Active
+            </div>
           </div>
-          <div className={`text-2xl font-black ${color} mb-1`}>{value}</div>
-          <div className="text-xs text-asteroid-400 uppercase tracking-wider">{label}</div>
+          <div>
+            <div className={`text-2xl font-mono ${color} mb-1 tracking-tight`}>{value}</div>
+            <div className="text-[11px] text-secondary-500 uppercase tracking-widest font-mono">{label}</div>
+          </div>
         </div>
       ))}
     </div>

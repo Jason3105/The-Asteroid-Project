@@ -6,12 +6,12 @@
 
 /* ── CSS Variables ─────────────────────────────────────────────── */
 :root {
-  --color-space-950: #03040a;
-  --color-space-900: #060812;
-  --color-space-800: #0a0d1e;
-  --color-nebula: #8b5cf6;
-  --color-electric: #0ea5e9;
-  --color-solar: #f59e0b;
+  --color-space-950: #0b0e14;
+  --color-space-900: #10131a;
+  --color-space-800: #191c22;
+  --color-nebula: #1E293B;
+  --color-electric: #38bdf8;
+  --color-solar: #94a3b8;
 }
 
 /* ── Base ──────────────────────────────────────────────────────── */
@@ -26,7 +26,7 @@
 
   body {
     background-color: var(--color-space-950);
-    color: white;
+    color: #e1e2eb;
     font-family: var(--font-inter), Inter, system-ui, sans-serif;
     min-height: 100vh;
   }
@@ -36,25 +36,24 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #060812;
+    background: #0b0e14;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #8b5cf6;
-    border-radius: 3px;
+    background: #1E293B;
+    border-radius: 0px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #7c3aed;
+    background: #38bdf8;
   }
 }
 
 /* ── Components ────────────────────────────────────────────────── */
 @layer components {
-  /* Glass card effect */
+  /* Glass card effect - updated for technical feel */
   .glass-card {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    @apply bg-slate-800/40 backdrop-blur-md border border-slate-700/50 rounded-sm;
   }
 
   .glass-card-hover {
@@ -62,21 +61,20 @@
   }
 
   .glass-card-hover:hover {
-    @apply bg-white/8 border-white/20;
-    box-shadow: 0 12px 40px rgba(139, 92, 246, 0.2);
-    transform: translateY(-2px);
+    @apply bg-slate-800/60 border-primary-500/30;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
   }
 
   /* Gradient text */
   .gradient-text {
-    background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #fbbf24 100%);
+    background: linear-gradient(135deg, #e1e2eb 0%, #94a3b8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-text-nebula {
-    background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%);
+    background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -84,61 +82,59 @@
 
   /* Buttons */
   .btn-primary {
-    @apply px-6 py-3 rounded-xl font-semibold text-white transition-all duration-200;
-    background: linear-gradient(135deg, #7c3aed 0%, #0ea5e9 100%);
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
+    @apply px-6 py-3 rounded-sm font-semibold text-white bg-slate-800 border border-primary-500/50 transition-all duration-200 text-primary-400;
   }
 
   .btn-primary:hover {
-    box-shadow: 0 6px 30px rgba(139, 92, 246, 0.5);
-    transform: translateY(-1px);
+    @apply bg-slate-700 border-primary-500 text-white;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
   }
 
   .btn-secondary {
-    @apply px-6 py-3 rounded-xl font-semibold text-white border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-200;
+    @apply px-6 py-3 rounded-sm font-semibold text-secondary-400 border border-secondary-600 bg-transparent transition-all duration-200;
   }
 
   .btn-secondary:hover {
-    @apply bg-white/10 border-white/30;
+    @apply bg-slate-800 border-secondary-400 text-white;
   }
 
   /* Badge */
   .badge {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+    @apply inline-flex items-center px-3 py-1 rounded-sm text-xs font-mono uppercase tracking-wider;
   }
 
   .badge-nebula {
-    @apply badge bg-purple-500/20 text-purple-300 border border-purple-500/30;
+    @apply badge bg-slate-800 text-secondary-400 border border-slate-700;
   }
 
   .badge-electric {
-    @apply badge bg-blue-500/20 text-blue-300 border border-blue-500/30;
+    @apply badge bg-slate-800 text-primary-400 border border-primary-500/30;
   }
 
   .badge-solar {
-    @apply badge bg-amber-500/20 text-amber-300 border border-amber-500/30;
+    @apply badge bg-slate-800 text-asteroid-400 border border-slate-700;
   }
 
   .badge-green {
-    @apply badge bg-green-500/20 text-green-300 border border-green-500/30;
+    @apply badge bg-slate-800 text-primary-400 border border-primary-500/30;
   }
 
   /* Score colors */
   .score-high {
-    @apply text-green-400;
+    @apply text-primary-400;
   }
 
   .score-mid {
-    @apply text-amber-400;
+    @apply text-secondary-400;
   }
 
   .score-low {
-    @apply text-red-400;
+    @apply text-slate-500;
   }
 
   /* Page section */
   .section-header {
-    @apply text-3xl font-bold mb-2;
+    @apply text-3xl font-bold mb-2 tracking-tight;
   }
 
   .section-subtext {

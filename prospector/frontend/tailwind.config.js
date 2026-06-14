@@ -10,38 +10,43 @@ module.exports = {
       colors: {
         // Deep space color palette
         space: {
-          950: "#03040a",
-          900: "#060812",
-          800: "#0a0d1e",
-          700: "#0f1428",
-          600: "#141b35",
+          950: "#0b0e14",
+          900: "#10131a",
+          800: "#191c22",
+          700: "#1d2026",
+          600: "#272a31",
+          500: "#32353c",
+          400: "#363940",
         },
-        nebula: {
-          400: "#a78bfa",
-          500: "#8b5cf6",
-          600: "#7c3aed",
-          700: "#6d28d9",
+        primary: {
+          400: "#7bd0ff",
+          500: "#38bdf8",
+          600: "#0ea5e9",
+        },
+        secondary: {
+          400: "#cbd5e1",
+          500: "#94a3b8",
+          600: "#64748b",
+        },
+        slate: {
+          800: "#1E293B",
+          900: "#0F172A",
         },
         electric: {
           400: "#38bdf8",
           500: "#0ea5e9",
           600: "#0284c7",
         },
-        solar: {
-          400: "#fbbf24",
-          500: "#f59e0b",
-          600: "#d97706",
-        },
         asteroid: {
-          400: "#a1a1aa",
-          500: "#71717a",
-          600: "#52525b",
+          400: "#94a3b8",
+          500: "#64748b",
+          600: "#475569",
         },
         // EVS score color scale
         evs: {
-          high: "#22c55e",
-          mid: "#f59e0b",
-          low: "#ef4444",
+          high: "#38bdf8",
+          mid: "#94a3b8",
+          low: "#475569",
         },
       },
       fontFamily: {
@@ -50,17 +55,17 @@ module.exports = {
         display: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
       },
       backgroundImage: {
-        "space-gradient": "radial-gradient(ellipse at center, #0a0d1e 0%, #03040a 100%)",
-        "nebula-gradient": "linear-gradient(135deg, #7c3aed 0%, #0ea5e9 100%)",
-        "solar-gradient": "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)",
-        "card-gradient": "linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)",
+        "space-gradient": "linear-gradient(to bottom, #0b0e14, #10131a)",
+        "nebula-gradient": "linear-gradient(to right, #1E293B, #0F172A)",
+        "solar-gradient": "linear-gradient(to right, #1E293B, #38bdf8)",
+        "card-gradient": "linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%)",
       },
       boxShadow: {
-        "glow-nebula": "0 0 20px rgba(139, 92, 246, 0.4)",
-        "glow-electric": "0 0 20px rgba(14, 165, 233, 0.4)",
-        "glow-solar": "0 0 20px rgba(245, 158, 11, 0.4)",
-        "glow-green": "0 0 20px rgba(34, 197, 94, 0.4)",
-        glass: "0 8px 32px rgba(0, 0, 0, 0.4)",
+        "glow-nebula": "0 0 1px rgba(148, 163, 184, 0.5)",
+        "glow-electric": "0 0 10px rgba(56, 189, 248, 0.2)",
+        "glow-solar": "0 0 1px rgba(148, 163, 184, 0.5)",
+        "glow-green": "0 0 1px rgba(148, 163, 184, 0.5)",
+        glass: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
       },
       animation: {
         "pulse-glow": "pulse-glow 3s ease-in-out infinite",

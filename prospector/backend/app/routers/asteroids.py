@@ -12,6 +12,7 @@ from app.models.orbital_elements import OrbitalElements
 from app.models.physical_params import PhysicalParams
 from app.schemas.asteroid_schema import AsteroidResponse, AsteroidListResponse
 from app.services.jpl_client import jpl_client
+from app.services.cad_client import cad_client
 from app.services.data_sync import sync_asteroid_details, full_sync
 from app.utils.orbital_math import orbit_points
 
@@ -77,6 +78,23 @@ async def search_asteroids(
     ]
 
 
+@router.get("/query")
+async def query_asteroids(
+    is_neo: bool = Query(True, description="Filter to Near-Earth Objects"),
+    orbit_class: Optional[str] = Query(None, description="Filter by orbit class (e.g., APO, ATE)"),
+    limit: int = Query(100, ge=1, le=500),
+    offset: int = Query(0, ge=0),
+):
+    """Query asteroids directly from the SBDB Query API."""
+    data = await jpl_client.query_asteroids(
+        is_neo=is_neo,
+        orbit_class=orbit_class,
+        limit=limit,
+        offset=offset
+    )
+    return data
+
+
 @router.get("/{designation}", response_model=AsteroidResponse)
 async def get_asteroid(
     designation: str,
@@ -133,6 +151,25 @@ async def get_asteroid_physical(designation: str, db: AsyncSession = Depends(get
     if not asteroid:
         raise HTTPException(status_code=404, detail="Asteroid not found.")
     return asteroid.physical_params
+
+
+@router.get("/{designation}/close-approaches")
+async def get_close_approaches(
+    designation: str,
+    date_min: str = Query("now", description="Minimum date (e.g., 'now', '2025-01-01')"),
+    date_max: str = Query("+10", description="Maximum date (e.g., '+10' years or '2035-01-01')"),
+    dist_max: str = Query("0.05", description="Maximum distance in AU"),
+    body: str = Query("Earth", description="Close approach body (default: Earth)"),
+):
+    """Get close approaches for an asteroid from CAD API."""
+    approaches = await cad_client.get_close_approaches(
+        designation=designation,
+        date_min=date_min,
+        date_max=date_max,
+        dist_max=dist_max,
+        body=body
+    )
+    return approaches
 
 
 @router.post("/sync")
