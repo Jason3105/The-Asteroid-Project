@@ -77,10 +77,9 @@ export async function GET(request: Request) {
     const topEntries = entries.slice(0, limit).map((e, idx) => ({ ...e, rank: idx + 1 }));
 
     return NextResponse.json({
-      data: {
-        entries: topEntries,
-        timestamp: new Date().toISOString(),
-      }
+      total: topEntries.length,
+      entries: topEntries,
+      timestamp: new Date().toISOString(),
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

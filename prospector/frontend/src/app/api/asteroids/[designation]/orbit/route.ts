@@ -34,7 +34,11 @@ export async function GET(request: Request, { params }: { params: Promise<{ desi
       360
     );
 
-    return NextResponse.json({ data: points });
+    return NextResponse.json({
+      designation,
+      n_points: 360,
+      points: points.map(p => ({ x: p.x, y: p.y, z: p.z }))
+    });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

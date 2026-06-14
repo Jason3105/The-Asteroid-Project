@@ -18,7 +18,7 @@ export async function getAsteroid(designation: string) {
 }
 
 export async function queryAsteroids(isNeo = true, orbitClass?: string, limit = 100, offset = 0) {
-  const fields = "spkid,full_name,pdes,name,prefix,neo,pha,class,e,a,q,i,om,w,ma,period,moid,H,diameter,albedo";
+  const fields = "spkid,full_name,pdes,name,prefix,neo,pha,class,e,a,q,i,om,w,ma,per,moid,H,diameter,albedo,spec_B,spec_T,rot_per";
   const url = new URL(SBDB_QUERY_URL);
   url.searchParams.set("fields", fields);
   url.searchParams.set("limit", limit.toString());

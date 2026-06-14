@@ -11,7 +11,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ desi
     const data = await getTrajectory(designation);
     if (!data) return NextResponse.json({ error: "Trajectory not found in NHATS" }, { status: 404 });
 
-    return NextResponse.json({ data });
+    return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

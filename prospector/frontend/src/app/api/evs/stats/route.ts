@@ -64,12 +64,10 @@ export async function GET() {
     const avgScore = scoredCount > 0 ? totalScore / scoredCount : 0;
 
     return NextResponse.json({
-      data: {
-        total_scored: scoredCount,
-        avg_score: avgScore,
-        max_score: maxScore,
-        total_estimated_value_usd: totalValue,
-      }
+      total_scored: scoredCount,
+      avg_score: avgScore,
+      max_score: maxScore,
+      total_estimated_value_usd: totalValue,
     });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

@@ -15,7 +15,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ desi
       return NextResponse.json({ error: "Asteroid not found" }, { status: 404 });
     }
 
-    return NextResponse.json({ data });
+    return NextResponse.json(data);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }

@@ -22,7 +22,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ desi
       density: phys.density,
     });
 
-    return NextResponse.json({ data: compData });
+    return NextResponse.json(compData);
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });
   }
